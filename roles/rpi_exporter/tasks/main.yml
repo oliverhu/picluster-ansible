@@ -1,8 +1,11 @@
 ---
 - name: Creating RPi exporter user group
+  become: yes
+  become_user: root
   group: name="{{groupId}}"
 
 - name: Creating RPi exporter user
+  become: yes
   user:
     name: "{{userId}}"
     group: "{{groupId}}"
@@ -14,6 +17,7 @@
 
 
 - name: Install RPi Exporter
+  become: yes
   unarchive:
     src: https://github.com/lukasmalkmus/rpi_exporter/releases/download/v0.6.0/rpi_exporter-0.6.0.linux-armv7.tar.gz
     dest: /tmp/
@@ -30,11 +34,13 @@
     mode: 0755
 
 - name: Delete RPi Exporter tmp folder
+  become: yes
   file:
     path: '/tmp/rpi_exporter-0.6.0.linux-armv7/rpi_exporter'
     state: absent
 
 - name: Copy systemd init file
+  become: yes
   template:
     src: rpi_exporter.service.j2
     dest: /etc/systemd/system/rpi_exporter.service

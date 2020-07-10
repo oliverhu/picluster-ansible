@@ -11,6 +11,8 @@ all:
       ansible_host: vpn0
     monitor0:
       ansible_host: monitor0
+    media0:
+      ansible_host: media0
   children:
     raspberry_pi:
       hosts:
@@ -19,6 +21,7 @@ all:
         ws0: {}
         vpn0: {}
         monitor0: {}
+        media0: {}
     monitoring_server:
       hosts:
         monitor0: {}

@@ -42,6 +42,8 @@
     name: pi
     shell: /bin/zsh
 - name: 'write .zshrc for users'
+  vars:
+    user: pi
   template:
     src: zshrc.j2
     dest: '~{{ ansible_user_id }}/.zshrc'

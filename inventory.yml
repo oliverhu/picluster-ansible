@@ -1,32 +1,27 @@
 ---
 all:
   hosts:
-    whitepi:
-      ansible_host: whitepi.local
-    greenpi:
-      ansible_host: greenpi.local
-    redpi:
-      ansible_host: redpi.local
-    bluepi:
-      ansible_host: bluepi.local
+    p0:
+      ansible_host: ansible0
+    p1:
+      ansible_host: img0
+    p2:
+      ansible_host: ws0
+    p3:
+      ansible_host: vpn0
+    p4:
+      ansible_host: monitor0
   children:
     raspberry_pi:
       hosts:
-        whitepi: {}
-        greenpi: {}
-        redpi: {}
-        bluepi: {}
-    k3s_coordinator:
-      hosts:
-        whitepi: {}
-    k3s_worker:
-      hosts:
-        greenpi: {}
-        redpi: {}
-        bluepi: {}
+        p0: {}
+        p1: {}
+        p2: {}
+        p3: {}
+        p4: {}
     monitoring_server:
       hosts:
-        whitepi: {}
+        p4: {}
   vars:
     ansible_python_interpreter: /usr/bin/python3
     remote_user: pi

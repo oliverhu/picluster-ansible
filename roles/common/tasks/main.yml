@@ -18,6 +18,16 @@
 - pip:
     name: glances
     executable: pip3
+- name: 'get docker installation script'
+  get_url: 
+    url: 'https://get.docker.com'
+    dest: /tmp/get-docker.sh
+- name: 'install docker'
+  become: yes
+  command: 'sh /tmp/get-docker.sh'
+- name: 'config docker group'
+  become: yes
+  command: 'usermod -aG docker pi'
 - name: 'clone oh-my-zsh for users'
   tags:
     # Suppress warning: [ANSIBLE0006] git used in place of git module

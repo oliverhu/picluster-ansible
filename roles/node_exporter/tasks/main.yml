@@ -1,7 +1,6 @@
 - name: Creating node_exporter user group
   become: yes
   group: name="{{groupId}}"
-  become: true
 
 - name: Creating node_exporter user
   become: yes

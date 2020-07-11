@@ -18,6 +18,11 @@
 - pip:
     name: glances
     executable: pip3
+
+- name: check if docker is installed
+  command: 'which docker'
+  register: docker_installed
+  ignore_errors: yes
 - name: 'get docker installation script'
   get_url: 
     url: 'https://get.docker.com'
@@ -25,6 +30,7 @@
 - name: 'install docker'
   become: yes
   command: 'sh /tmp/get-docker.sh'
+  when: docker_installed.rc != 0
 - name: 'config docker group'
   become: yes
   command: 'usermod -aG docker pi'
